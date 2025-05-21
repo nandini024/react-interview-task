@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Badge from "react-bootstrap/Badge";
-import './App.css'; 
+import './App.css';
 
 function App() {
   const [data, setData] = useState([]);
@@ -25,33 +25,34 @@ function App() {
   };
 
   return (
-    <div className="container">
-      {/* Sidebar */}
+    <div className="main-container">
       <div className="sidebar">
-        <h2>Categories</h2>
-        <button onClick={() => handleCategory("electronics")}>Electronics</button>
-        <button onClick={() => handleCategory("fashion")}>Fashion</button>
+        <h2>🛍️ Categories</h2>
+        <button onClick={() => handleCategory("electronics")}>💻 Electronics</button>
+        <button onClick={() => handleCategory("fashion")}>👗 Fashion</button>
       </div>
 
-      {/* Products */}
       <div className="products">
-        <h2>Products</h2>
-        {data.map((item, index) => (
-          <div key={index} className="product-item">
-            <span>{item.name}</span>
-            <button onClick={() => handleCart(item)}>Add to Cart</button>
-          </div>
-        ))}
+        <h2>🛒 Products</h2>
+        <div className="product-grid">
+          {data.map((item, index) => (
+            <div className="product-card" key={index}>
+              <div className="product-name">{item.name}</div>
+              <button onClick={() => handleCart(item)}>Add to Cart</button>
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* Cart */}
       <div className="cart">
         <h2>
-          Cart Items <Badge bg="secondary">{cart.length}</Badge>
+          🛍️ Cart <Badge bg="secondary">{cart.length}</Badge>
         </h2>
-        {cart.map((item, index) => (
-          <div key={index} className="cart-item">{item.name}</div>
-        ))}
+        <div className="cart-items">
+          {cart.map((item, index) => (
+            <div key={index} className="cart-tag">{item.name}</div>
+          ))}
+        </div>
       </div>
     </div>
   );
